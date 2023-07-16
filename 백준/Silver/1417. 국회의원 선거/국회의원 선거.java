@@ -33,7 +33,7 @@ public class Main {
                     }
                     else {
                         if (target + gap > pq.peek()) {
-                            for (int i = 0; i < gap; i++) {
+                            for (int i = gap; i > 0; i++) {
                                 target++;
                                 cnt++;
                                 temp--;
