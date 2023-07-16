@@ -15,17 +15,36 @@ public class Main {
             pq.add(pint(br.readLine()));
         }
 
+        pq.add(0);
         int cnt = 0;
 
         if (N == 1) {
             System.out.println(cnt);
         }
         else {
-            while (target <= pq.peek()) {
+            breakPoint: while (target <= pq.peek()) {
                 int temp = pq.poll();
-                pq.add(temp - 1);
-                target++;
-                cnt++;
+                int gap = temp - pq.peek();
+
+                if (gap > 0) {
+                    for (int i = 0; i < gap; i++) {
+                        target++;
+                        cnt++;
+                        temp--;
+
+                        if (target > temp) {
+                            break breakPoint;
+                        }
+                    }
+
+                    pq.add(temp);
+                }
+
+                else {
+                    target++;
+                    cnt++;
+                    pq.add(temp - 1);
+                }
             }
 
             System.out.println(cnt);
