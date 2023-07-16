@@ -27,19 +27,29 @@ public class Main {
                 int gap = temp - pq.peek();
 
                 if (gap > 0) {
-                    for (int i = 0; i < gap; i++) {
-                        target++;
-                        cnt++;
-                        temp--;
+                    if (pq.peek() == 0) {
+                        cnt += (temp - target) / 2 + 1;
+                        break breakPoint;
+                    }
+                    else {
+                        if (target + gap > pq.peek()) {
+                            for (int i = 0; i < gap; i++) {
+                                target++;
+                                cnt++;
+                                temp--;
 
-                        if (target > temp) {
-                            break breakPoint;
+                                if (target > temp) {
+                                    break breakPoint;
+                                }
+                            }
+                        }
+                        else {
+                            target += gap;
+                            cnt += gap;
+                            pq.add(temp - gap);
                         }
                     }
-
-                    pq.add(temp);
                 }
-
                 else {
                     target++;
                     cnt++;
