@@ -21,8 +21,14 @@ public class Main {
 
         }
 
-        Arrays.sort(arr, Comparator.comparingInt((int[] o) -> o[0])
-                .thenComparingInt((int[] o) -> o[1]));
+        Arrays.sort(arr, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                int result = o1[0] - o2[0];
+                if (result != 0) return result;
+                return o1[1] - o2[1];
+            }
+        });
 
         PriorityQueue<Integer> queue = new PriorityQueue<>();
         queue.add(0);
