@@ -13,7 +13,8 @@ public class Main {
             return a;
         }
 
-        return find(grp[a]);
+        grp[a] = find(grp[a]);
+        return grp[a];
     }
 
     private static void union(int a, int b) {
