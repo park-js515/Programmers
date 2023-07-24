@@ -49,7 +49,7 @@ public class Main {
             grp[i] = i;
         }
 
-        ArrayList<Link> links = new ArrayList<>();
+        PriorityQueue<Link> links = new PriorityQueue<>();
         for (int i = 0; i < N; i++) {
             input = br.readLine().split(" ");
             for (int j = 0; j < i; j++) {
@@ -57,11 +57,10 @@ public class Main {
             }
         }
 
-        Collections.sort(links);
-
         int k = 0;
         long s = 0;
-        for (Link link: links) {
+        while(!links.isEmpty()) {
+            Link link = links.poll();
             if (find(link.s) != find(link.e)) {
                 union(link.s, link.e);
                 k++;
