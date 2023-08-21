@@ -7,6 +7,7 @@ public class Main {
     }
 
     private static int[][] field;
+    private static int[][] score_field;
 
     private static int[] dice = {1, 2, 3, 4, 5, 6};
 
@@ -113,11 +114,18 @@ public class Main {
         String[] input = br.readLine().split(" ");
         int N = pint(input[0]), M = pint(input[1]), K = pint(input[2]);
         field = new int[N][M];
+        score_field = new int[N][M];
 
         for (int i = 0; i < N; i++) {
             input = br.readLine().split(" ");
             for (int j = 0; j < M; j++) {
                 field[i][j] = pint(input[j]);
+            }
+        }
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                score_field[i][j] = bfs(N, M, i, j);
             }
         }
 
@@ -139,7 +147,7 @@ public class Main {
             }
 
             move(nowDir);
-            score += bfs(N, M, pos[0], pos[1]);
+            score += score_field[pos[0]][pos[1]];
 
             int change = changeDir(dice[5], field[pos[0]][pos[1]]);
             if (change != -1) {
