@@ -4,6 +4,7 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         String input = br.readLine();
         int len = input.length();
         int[] arr = new int[26];
@@ -13,8 +14,9 @@ public class Main {
         }
 
         for (int i: arr) {
-            System.out.print(i +" ");
+            bw.write(i + " ");
         }
         br.close();
+        bw.close();
     }
 }
