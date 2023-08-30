@@ -17,6 +17,10 @@ public class Main {
           queue.add(new int[] {sr, sc});
 
           while (!queue.isEmpty()) {
+              if (visited[er][ec] != -1) {
+                  return visited[er][ec];
+              }
+
               int[] now = queue.poll();
               int r = now[0];
               int c = now[1];
@@ -31,10 +35,6 @@ public class Main {
 
                   visited[dr][dc] = visited[r][c] + 1;
                   queue.add(new int[] {dr, dc});
-
-                  if (visited[er][ec] != -1) {
-                      return visited[er][ec];
-                  }
               }
           }
 
