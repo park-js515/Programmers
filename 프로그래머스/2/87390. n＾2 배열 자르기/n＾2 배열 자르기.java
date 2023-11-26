@@ -1,4 +1,5 @@
 class Solution {
+    // 타입 에러 해결이 문제
     public int[] solution(int n, long left, long right) {
         int[] answer = new int[(int)(right - left + 1)];
         int idx = 0;
