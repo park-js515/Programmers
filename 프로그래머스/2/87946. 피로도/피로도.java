@@ -3,7 +3,6 @@ class Solution {
     private static boolean[] visited;
     private static void dfs(int n, int k, int[][] dungeons, int depth) {
         answer = Math.max(answer, depth);
-        
         for (int i = 0; i < n; i++) {
             int[] dungeon = dungeons[i];
             if (!visited[i] && k >= dungeon[0]) {
