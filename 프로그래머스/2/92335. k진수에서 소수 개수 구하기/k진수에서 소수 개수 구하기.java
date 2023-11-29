@@ -1,4 +1,5 @@
 class Solution {
+    // 에라토네스의 체가 아닌 방법으로 문제를 풀어야 한다.
     private static boolean isPrime(long n) {
         if (n <= 1) return false;
         if (n == 2) return true;
