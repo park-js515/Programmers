@@ -24,6 +24,6 @@ class Solution {
             }
         }
         
-        return DP[n - 1][m - 1] == -1 ? 0 : DP[n - 1][m - 1];
+        return DP[n - 1][m - 1];
     }
 }
