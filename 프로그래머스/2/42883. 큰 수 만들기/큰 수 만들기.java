@@ -1,20 +1,23 @@
+import java.util.Stack;
+
 class Solution {
     public String solution(String number, int k) {
-        StringBuilder sb = new StringBuilder(number);
-        int len = number.length();
-        for (int i = 1; i <= k; i++) {
-            boolean isRemoved = false;
-            point: for (int j = 0; j < len - 1; j++) {
-                if (sb.charAt(j) < sb.charAt(j + 1)) {
-                    sb.replace(j, j + 1, "");
-                    isRemoved = true;
-                    break point;
+        Stack<Character> stack = new Stack<>();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < number.length(); i++) {
+            if (k > 0 && !stack.isEmpty() && stack.peek() < number.charAt(i)) {
+                while (k > 0 && !stack.isEmpty() && stack.peek() < number.charAt(i)) {
+                    k--;
+                    stack.pop();
                 }
             }
-            
-            if (!isRemoved) {
-                sb.replace(len - i, len - i + 1, "");
-            }
+            stack.push(number.charAt(i));
+        }
+        for (int i = 0; i < k; i++) {
+            stack.pop();
+        }
+        for (char ch: stack) {
+            sb.append(ch);
         }
         
         return sb.toString();
