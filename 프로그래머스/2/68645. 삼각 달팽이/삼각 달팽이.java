@@ -1,3 +1,4 @@
+// 효율적으로 풀 수 없다면 무식하게라도 풀 수 있어야 한다.
 class Solution {
     public int[] solution(int n) {
         int[][] d = {{1, 0}, {0, 1}, {-1, -1}};
