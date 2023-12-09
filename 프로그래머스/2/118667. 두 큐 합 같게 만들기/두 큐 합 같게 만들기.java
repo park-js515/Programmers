@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 class Solution {
     public int solution(int[] queue1, int[] queue2) {
         int len = queue1.length;
