@@ -16,8 +16,7 @@ class Solution {
             DP[i] = sticker[i];
             for (int j = i; j < len; j++) {
                 if (DP[j] == 0) continue;
-                int maxRange = Math.min(j + 4, len);
-                for (int k = j + 2; k < maxRange; k++) {
+                for (int k = j + 2; k < Math.min(j + 4, len); k++) {
                     if (i == 0 && k == len - 1) continue;
                     DP[k] = Math.max(DP[k], DP[j] + sticker[k]);
                 }
