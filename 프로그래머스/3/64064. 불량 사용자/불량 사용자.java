@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 class Solution {
-    private static boolean[] visited;
-    private static boolean[][] matrix;
-    private static ArrayList<HashSet<String>> list = new ArrayList<>();
+    private boolean[] visited;
+    private boolean[][] matrix;
+    private ArrayList<HashSet<String>> list = new ArrayList<>();
     
-    private static boolean coincide(String st1, String st2) {
+    private boolean coincide(String st1, String st2) {
         int len1 = st1.length();
         int len2 = st2.length();
         if (len1 != len2)  return false;
@@ -22,7 +22,7 @@ class Solution {
         return true;
     }
     
-    private static void dfs(int len1, int len2, int depth, String[] user_id) {
+    private void dfs(int len1, int len2, int depth, String[] user_id) {
         if (depth == len2) {
             HashSet<String> set = new HashSet<>();
             for (int i = 0; i < len1; i++) {
