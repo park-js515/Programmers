@@ -25,20 +25,20 @@ class Solution {
             String name = splited[2];
             String melody = splited[3];
             int melodyLen = melody.length();
-            ArrayList<String> list = new ArrayList<>();
+            ArrayList<String> melodyList = new ArrayList<>();
             for (int i = 0; i < melodyLen; i++) {
                 if (i + 2 <= melodyLen && scales.contains(melody.substring(i, i + 2))) {
-                    list.add(melody.substring(i, i + 2));
+                    melodyList.add(melody.substring(i, i + 2));
                     i++;
                 } else {
-                    list.add(melody.substring(i, i + 1));
+                    melodyList.add(melody.substring(i, i + 1));
                 }
             }
         
-            int size = list.size();
+            int size = melodyList.size();
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < minute; i++) {
-                sb.append(list.get(i % size));
+                sb.append(melodyList.get(i % size));
             }
             
             int start = 0;
