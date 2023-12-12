@@ -8,6 +8,7 @@ class Solution {
         
         return Integer.parseInt(splited[0]) * 60 + Integer.parseInt(splited[1]);
     }
+    
     public int solution(String[][] book_time) {
         PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(o -> o[1]));
         int[][] book_time_arr = new int[book_time.length][2];
@@ -19,7 +20,6 @@ class Solution {
             return o1[0] - o2[0];
         });
         
-        int now = 0;
         int answer = 0;
         for (int[] t: book_time_arr) {
             while (!pq.isEmpty()) {
