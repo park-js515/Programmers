@@ -44,8 +44,8 @@ class Solution {
             int start = 0;
             String st = sb.toString();
             while (true) {
-                int idx1 = sb.indexOf(m, start);
-                int idx2 = sb.indexOf(m + "#", start);
+                int idx1 = st.indexOf(m, start);
+                int idx2 = st.indexOf(m + "#", start);
                 
                 if (idx1 != -1 && idx1 != idx2) {
                     answerList.add(new Music(name, idx++, minute));
