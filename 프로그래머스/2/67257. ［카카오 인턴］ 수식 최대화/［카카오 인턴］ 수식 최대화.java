@@ -1,5 +1,4 @@
 import java.util.ArrayDeque;
-import java.util.Arrays;
 
 class Solution {
     private String calc(String st1, String st2, String op) {
