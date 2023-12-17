@@ -48,11 +48,11 @@ class Solution {
     }
     
     private class City {
-    String name;
-    boolean visited = false;
+        String name;
+        boolean visited = false;
 
-    City(String name) {
-        this.name = name;
+        public City(String name) {
+            this.name = name;
         }
     }
 }
