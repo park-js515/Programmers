@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 class Solution {
     private int getMin(int[][] board, int r, int c) {
         int min = Math.min(board[r - 1][c - 1], board[r - 1][c]);
