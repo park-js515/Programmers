@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 class Solution {
     private int[][] cross1 = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
     private int[][] cross2 = {{-1, -1}, {-1, 1}, {1, -1}, {1, 1}};
