@@ -21,9 +21,9 @@ class Solution {
             if (pq.isEmpty()) {
                 now = jobs[idx][0];
             } else {
-                int[] temp = pq.poll();
-                total += temp[1] + now - temp[0];
-                now += temp[1];
+                int[] task = pq.poll();
+                total += now - task[0] + task[1];
+                now += task[1];
                 cnt++;
             }
         }
