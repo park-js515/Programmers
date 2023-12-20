@@ -13,6 +13,8 @@ class Solution {
                 }
             }
         }
+        
+        board[0][0] = 1; // 불필요한 방문 제거
         if (board[1][0] != 1) {
             pq.add(new Node(1, 0, 1, 100));
         }
