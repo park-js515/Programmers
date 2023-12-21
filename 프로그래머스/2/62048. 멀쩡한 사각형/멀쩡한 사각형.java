@@ -10,7 +10,10 @@ class Solution {
     public long solution(int w, int h) {
         long total = (long)w * h;
         long G = gcd(w, h);
+        long gH = h / G;
+        long gW = w / G;
+        long part = gH + gW - 1;
         
-        return total - (w + h - G);
+        return total - G * part;
     }
 }
