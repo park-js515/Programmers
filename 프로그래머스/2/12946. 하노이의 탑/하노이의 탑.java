@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 class Solution {
     private ArrayList<int[]> list = new ArrayList<>();
