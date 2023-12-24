@@ -1,5 +1,4 @@
 import java.util.ArrayDeque;
-import java.util.Arrays;
 
 class Solution {
     private int[][] d = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
