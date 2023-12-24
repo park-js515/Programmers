@@ -15,10 +15,10 @@ class Solution {
         queue.add(R);
         while (!queue.isEmpty()) {
             int[] now = queue.poll();
+            int nextCnt = visited[now[0]][now[1]] + 1;
             for (int i = 0; i < 4; i++) {
                 int dr = now[0];
                 int dc = now[1];
-                int nextCnt = visited[now[0]][now[1]] + 1;
                 while(true) {
                     dr += d[i][0];
                     dc += d[i][1];
