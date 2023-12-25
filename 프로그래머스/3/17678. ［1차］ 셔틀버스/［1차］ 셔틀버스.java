@@ -1,7 +1,6 @@
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Arrays;
 
 class Solution {
@@ -62,13 +61,12 @@ class Solution {
             return answer;
         }
         
-        HashSet<Integer> set = new HashSet<>();
+        ArrayList<Integer> totalList = new ArrayList<>();
         for (int key: keySet) {
             for (int num: map.get(key)) {
-                set.add(num);
+                totalList.add(num);
             }
         }
-        ArrayList<Integer> totalList = new ArrayList<>(set);
         answer = getStringTime(getMax(totalList) - 1);
         
         return answer;
