@@ -9,6 +9,7 @@ class Solution {
         int answer = 1, maxScore = 0, targetSum = target[0] + target[1];
 
         for (int[] score : scores) {
+            // 원호보다 큰 값이 있다.
             if (score[1] < maxScore) {
                 if (score.equals(target))
                     return -1;
