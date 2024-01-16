@@ -22,10 +22,6 @@ class Solution {
             index++;
         }
         
-        if (begin == 1) {
-            answer[0] = 0;
-        }
-        
         return answer;
     }
 }
