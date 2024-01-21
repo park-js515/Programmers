@@ -32,7 +32,7 @@ class Solution {
             interval[e]--;
         }
         
-        int val = interval[0];
+        long val = interval[0];
         for (int i = 1; i <= pt; i++) {
             prefixed[i] += val + prefixed[i - 1];
             val += interval[i];
