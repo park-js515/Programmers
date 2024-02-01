@@ -91,7 +91,6 @@ class Solution {
             }
             arr[4] = Integer.parseInt(splited[4]);
             answer[i] = find(arr, len);
-            // System.out.println(list[arr[0]][arr[1]][arr[2]][arr[3]]);
         }
         
         
