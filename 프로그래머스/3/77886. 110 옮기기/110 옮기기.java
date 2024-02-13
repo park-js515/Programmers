@@ -30,6 +30,8 @@ class Solution {
         
         if (flag) {
             for (int i = cnt - 1; i >= 0; i--) {
+                // 처음 조우하는 0을 만난 다음에 삽입하면 답이 된다.
+                // 110의 경우는 모두 제거했기 때문에
                 if (sb.charAt(i) == '0') {
                     ret = new StringBuilder(sb.substring(0, i + 1));
                     for (int j = 0 ; j < targets; j++) {
