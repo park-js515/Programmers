@@ -1,11 +1,11 @@
 import java.io.*;
 import java.util.PriorityQueue;
-import java.util.Arrays;
 
 public class Main {
     private static int pint(String s) {
         return Integer.parseInt(s);
     }
+
     private static int getHeight(char ch) {
         if (ch >= 'A' && ch <= 'Z') {
             return ch - 'A';
@@ -23,7 +23,7 @@ public class Main {
         }
 
         PriorityQueue<int[]> pq = new PriorityQueue<>((o1, o2) -> o1[2] - o2[2]);
-        pq.add(new int[] {0, 0, 0});
+        pq.add(new int[]{0, 0, 0});
         while (!pq.isEmpty()) {
             int[] now = pq.poll();
             if (dist[now[0]][now[1]] > now[2]) {
@@ -44,7 +44,7 @@ public class Main {
                 int after = map[dr][dc];
                 int cost = before >= after ? now[2] + 1 : now[2] + (int) Math.pow(before - after, 2);
                 if (dist[dr][dc] > cost && Math.abs(before - after) <= T) {
-                    pq.add(new int[] {dr, dc, cost});
+                    pq.add(new int[]{dr, dc, cost});
                 }
             }
         }
@@ -62,7 +62,7 @@ public class Main {
         }
 
         PriorityQueue<int[]> pq = new PriorityQueue<>((o1, o2) -> o1[2] - o2[2]);
-        pq.add(new int[] {start[0], start[1], 0});
+        pq.add(new int[]{start[0], start[1], 0});
         while (!pq.isEmpty()) {
             int[] now = pq.poll();
             if (dist[now[0]][now[1]] > now[2]) {
@@ -86,7 +86,7 @@ public class Main {
                 int after = map[dr][dc];
                 int cost = before >= after ? now[2] + 1 : now[2] + (int) Math.pow(before - after, 2);
                 if (dist[dr][dc] > cost && Math.abs(before - after) <= T) {
-                    pq.add(new int[] {dr, dc, cost});
+                    pq.add(new int[]{dr, dc, cost});
                 }
             }
         }
@@ -109,7 +109,9 @@ public class Main {
         int[][] cost2 = new int[N][M];
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
-                cost2[i][j] = dijkstra2(N, M, T, map, new int[] {i, j});
+                if (cost1[i][j] != 100_000_000) {
+                    cost2[i][j] = dijkstra2(N, M, T, map, new int[]{i, j});
+                }
             }
         }
 
