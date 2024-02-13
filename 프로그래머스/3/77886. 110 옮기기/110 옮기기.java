@@ -29,7 +29,7 @@ class Solution {
         }
         
         if (flag) {
-            for (int i = sb.length() - 1; i >= 0; i--) {
+            for (int i = cnt - 1; i >= 0; i--) {
                 if (sb.charAt(i) == '0') {
                     ret = new StringBuilder(sb.substring(0, i + 1));
                     for (int j = 0 ; j < targets; j++) {
