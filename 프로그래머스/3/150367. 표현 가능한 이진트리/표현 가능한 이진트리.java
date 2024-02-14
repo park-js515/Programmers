@@ -41,14 +41,12 @@ class Solution {
                 for (int j = 0; j < gap; j++) {
                     sb.insert(0, "0");
                 }
-                answer = 1;
-                check(sb.toString(), 0, targetLen - 1, '1');
-                arr[i] = Math.max(arr[i], answer);
-            } else {
-                answer = 1;
-                check(st, 0, targetLen - 1, '1');
-                arr[i] = Math.max(arr[i], answer);
+                st = sb.toString();
             }
+            
+            answer = 1;
+            check(st, 0, targetLen - 1, '1');
+            arr[i] = Math.max(arr[i], answer);
         }
         
         return arr;
