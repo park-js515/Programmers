@@ -13,17 +13,13 @@ class Solution {
             t = (t * 10) + N;
             set[i].add(t);
             for (int j = 1; j < i; j++) {
-                for (int k = 1; k < i; k++) {
-                    if (j + k == i) {
-                        for (int a: set[j]) {
-                            for (int b: set[k]) {
-                                set[i].add(a + b);
-                                set[i].add(a - b);
-                                set[i].add(a * b);
-                                if (b != 0) {
-                                    set[i].add(a / b);
-                                }
-                            }
+                for (int a: set[j]) {
+                    for (int b: set[i - j]) {
+                        set[i].add(a + b);
+                        set[i].add(a - b);
+                        set[i].add(a * b);
+                        if (b != 0) {
+                            set[i].add(a / b);
                         }
                     }
                 }
