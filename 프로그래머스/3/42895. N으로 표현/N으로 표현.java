@@ -20,10 +20,8 @@ class Solution {
                                 set[i].add(a + b);
                                 set[i].add(a - b);
                                 set[i].add(a * b);
-                                try {
-                                 set[i].add(a / b);   
-                                } catch (Exception e) {
-                                    // do nothing...
+                                if (b != 0) {
+                                    set[i].add(a / b);
                                 }
                             }
                         }
