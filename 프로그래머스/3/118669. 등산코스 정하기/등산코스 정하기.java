@@ -23,7 +23,7 @@ class Solution {
             }
             
             for (int[] next: adjList[node[0]]) {
-                if (!visited[next[0]] && !isSummit[next[0]] && next[1] <= intensity) {
+                if (next[1] <= intensity && !visited[next[0]] && !isSummit[next[0]]) {
                     int nextValue = Math.max(next[1], node[1]);
                     if (isGate[next[0]]) {
                         if (intensity == nextValue) {
