@@ -13,7 +13,7 @@ class Solution {
             if (sum >= n) {
                 e = m;
             } else {
-                s = m + 1;
+                s = m + 1; 
             }
         }
         
