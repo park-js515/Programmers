@@ -38,7 +38,6 @@ class Solution {
             for (int j = copMin; j < copMax + 1; j++) {
                 for (int[] p: base) {
                     if (i >= p[0] && j >= p[1]) {
-                        // System.out.println(field[i][j]);
                         int dr = Math.min(i + p[2], alpMax);
                         int dc = Math.min(j + p[3], copMax);
                         field[dr][dc] = Math.min(field[dr][dc], field[i][j] + p[4]);
