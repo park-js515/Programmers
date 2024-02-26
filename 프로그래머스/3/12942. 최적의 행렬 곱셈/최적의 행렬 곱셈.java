@@ -1,3 +1,6 @@
+// i, j, i + k (i + k < len)
+// => i < len - k
+
 class Solution {
     public int solution(int[][] matrix_sizes) {
         int[][] M = matrix_sizes;
