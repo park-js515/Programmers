@@ -1,9 +1,7 @@
 // 대칭으로 넘기고 직선거리를 구한다.
 
-import java.util.Arrays;
 class Solution {
     private int L2(long x1, long y1, long x2, long y2) {
-        // System.out.println(x1 + " " + y1 + " " + x2 + " " + y2);
         return (int) (Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
     }
     
@@ -42,7 +40,6 @@ class Solution {
             startX < x ? (int) Math.pow(startX + x, 2) : (int) Math.pow(2 * m - startX - x, 2);
             arr[3] = startY != y ? L2(startX, startY, getRev(m, x), y) : Integer.MAX_VALUE;
             answer[i] = getMin(arr);
-            System.out.println(); 
         }
         
         return answer;
