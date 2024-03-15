@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Arrays;
 
 class Solution {
     private int[] answer;
