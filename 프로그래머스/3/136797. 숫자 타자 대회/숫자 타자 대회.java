@@ -20,7 +20,9 @@ class Solution {
             return 0;
         }
         
-        if (dp[idx][left][right] != -1) return dp[idx][left][right];
+        if (dp[idx][left][right] != -1) {
+            return dp[idx][left][right]; 
+        }
         
         int target = numbers.charAt(idx) - '0';
         int ret = Integer.MAX_VALUE;
