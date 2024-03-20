@@ -1,10 +1,10 @@
 # [level 3] 리틀 프렌즈 사천성 - 1836 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/1836#) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/1836) 
 
 ### 성능 요약
 
-메모리: 112 MB, 시간: 49.14 ms
+메모리: 95.8 MB, 시간: 40.30 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 03월 20일 17:09:42
+2024년 03월 20일 17:12:21
 
 ### 문제 설명
 

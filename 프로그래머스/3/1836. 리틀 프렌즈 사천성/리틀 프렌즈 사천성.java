@@ -1,3 +1,6 @@
+// dfs 시간 초과
+// 현재까지 갈 수 있는 경우에서 모든 경우를 다 선택한 후 더 이상 갈 곳이 없다면 불가능을 반환한다.
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.HashMap;
