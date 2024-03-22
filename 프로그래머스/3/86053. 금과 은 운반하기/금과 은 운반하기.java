@@ -31,12 +31,12 @@ class Solution {
         long left = 1, right = MAX;
         int n = g.length;
         
-        while (left + 1 < right) {
+        while (left < right) {
             long m = (left + right) / 2;
-            if (check(n, a, b, g, s, w, t, m)) {
-                right = m;
+            if (!check(n, a, b, g, s, w, t, m)) {
+                left = m + 1;
             } else {
-                left = m;
+                right = m;
             }
         }
         
