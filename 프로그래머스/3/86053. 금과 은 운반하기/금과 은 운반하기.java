@@ -21,11 +21,9 @@ class Solution {
         }
         
         if (totalMineral >= a + b && totalGold >= a && totalSilver >= b) {
-            System.out.println(true);
             return true;
         }
         
-        System.out.println(false);
         return false;
     }
     
