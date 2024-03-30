@@ -11,7 +11,7 @@ class Solution {
             return 0;
         }
         
-        int ret = 0;
+        int ret = 0; // 초기값은 지는 경우로 생각
         board[ar][ac] = 0;
         for (int i = 0; i < 4; i++) {
             int dr = ar + D[i][0];
