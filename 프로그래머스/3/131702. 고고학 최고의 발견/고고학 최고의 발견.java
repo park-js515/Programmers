@@ -39,8 +39,11 @@ class Solution {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
                     sum += rotations[i][j];
-                    check += board[i][j];
                 }
+            }
+            
+            for (int i = 0; i < n; i++) {
+                check += board[n - 1][i];
             }
             
             if (check == 0) {
