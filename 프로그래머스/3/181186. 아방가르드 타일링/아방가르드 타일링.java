@@ -9,8 +9,8 @@ dp[n] = dp[n - 1] + 2 * dp[n - 2] + 5 * dp[n - 3]
 dp[n] = dp[n - 1] + 2 * dp[n - 2] + 5 * dp[n - 3]
 + 2 * sum[n - 4] + 2 * sum[n - 5] + 4 * sum[n - 6]
 
-sum[n] = dp[n] + dn[n - 3] + dp[n - 6] + ...
-sum[n] = dp[n] + dp[n - 3]
+sum[n] = dp[n] + dp[n - 3] + dp[n - 6] + ...
+sum[n] = dp[n] + sum[n - 3]
 
 dp[0] = 1 => 0개로 만드는 방법은 1개
 dp[1] = 1
