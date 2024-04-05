@@ -1,3 +1,8 @@
+/*
+dp[i]: 현재 위치에서의 최대값
+dp[i] = Math.max(dp[i - 1], dp[i - 2] + money[i]);
+*/
+
 class Solution {
     public int solution(int[] money) {
         int n = money.length;
