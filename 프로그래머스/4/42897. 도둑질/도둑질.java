@@ -1,6 +1,8 @@
 /*
 dp[i]: 현재 위치에서의 최대값
 dp[i] = Math.max(dp[i - 1], dp[i - 2] + money[i]);
+
+맨 앞에 0을 추가하여 맨 앞과 그 다음 위치를 비교할 수 있게 한다.
 */
 
 class Solution {
