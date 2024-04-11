@@ -14,7 +14,6 @@ class Solution {
         while (left <= right) {
             int mid = (left + right) / 2;
             int cnt = check(mid);
-            // System.out.println(mid + " " + cnt + " " + left + " " + right);
             if (cnt <= n) {
                 answer = mid;
                 left = mid + 1;
@@ -53,11 +52,6 @@ class Solution {
         this.distance = distance;
         this.n = n;
         this.rocks = rocks;
-        
-//         for (int i = 0; i <= distance; i++) {
-//             System.out.println(i + " " + check(i));
-//         }
-//         System.out.println("----");
         
         return binarySearch();
     }
