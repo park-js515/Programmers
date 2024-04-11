@@ -3,7 +3,7 @@ arr = [1, 1, 1, 1, 2, 2, 2, 3, 3, 3]
 
 def lowerBound1(arr: list[int], target: int):
     left = 0
-    right = len(arr) - 1
+    right = len(arr)
 
     while left < right:
         mid = (left + right) // 2
@@ -17,7 +17,7 @@ def lowerBound1(arr: list[int], target: int):
 
 def upperBound1(arr: list[int], target: int):
     left = 0
-    right = len(arr) - 1
+    right = len(arr)
 
     while left < right:
         mid = (left + right) // 2
