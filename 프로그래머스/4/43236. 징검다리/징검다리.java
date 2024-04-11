@@ -20,7 +20,7 @@ class Solution {
             }
         }
         
-        return right;
+        return left - 1;
     }
     
     private int check(int interval) {
