@@ -12,7 +12,7 @@ def lowerBound1(arr: list[int], target: int):
         else:
             right = mid
 
-    print(right)
+    print(left)
 
 
 def upperBound1(arr: list[int], target: int):
@@ -26,7 +26,7 @@ def upperBound1(arr: list[int], target: int):
         else:
             right = mid
 
-    print(right)
+    print(left)
 
 
 lowerBound1(arr, 2)
