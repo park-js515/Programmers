@@ -10,19 +10,17 @@ class Solution {
         int left = 1;
         int right = distance;
         
-        int answer = 0;
         while (left <= right) {
             int mid = (left + right) / 2;
             int cnt = check(mid);
             if (cnt <= n) {
-                answer = mid;
                 left = mid + 1;
             } else {
                 right = mid - 1;
             }
         }
         
-        return answer;
+        return right;
     }
     
     private int check(int interval) {
