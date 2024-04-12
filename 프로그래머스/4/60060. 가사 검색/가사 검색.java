@@ -83,14 +83,4 @@ class Solution {
             return this.cnt;
         }
     }
-    
-    private class QueueNode {
-        TrieNode node;
-        int index;
-        
-        public QueueNode(TrieNode node, int index) {
-            this.node = node;
-            this.index = index;
-        }
-    }
 }
