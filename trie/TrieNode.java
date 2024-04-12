@@ -6,14 +6,14 @@ public class TrieNode {
     private boolean isLastChar;
 
     public Map<Character, TrieNode> getChildNodes() {
-        return childNodes;
+        return this.childNodes;
     }
 
     public boolean isLastChar() {
-        return isLastChar;
+        return this.isLastChar;
     }
 
-    public void setIsLastChar(boolean lastChar) {
-        isLastChar = lastChar;
+    public void setIsLastChar(boolean isLastChar) {
+        this.isLastChar = isLastChar;
     }
 }
