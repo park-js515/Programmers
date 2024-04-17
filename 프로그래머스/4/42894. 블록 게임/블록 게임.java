@@ -1,4 +1,6 @@
 // 추가적으로 제거할 수 없다면 순회를 멈춘다.
+// 빈칸 자신도 0이어야 한다.
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Queue;
