@@ -47,7 +47,7 @@ class Solution {
             
             visited[node] = true;
             cnt++;
-            if (next[node] != 0) {
+            if (next[node] != 0) { // 선행 정점이 방문되면 후행 정점을 큐에 넣어준다.
                 queue.add(next[node]);
             }
             for (int i: adjList[node]) {
