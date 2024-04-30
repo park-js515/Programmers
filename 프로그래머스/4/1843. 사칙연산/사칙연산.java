@@ -43,6 +43,6 @@ class Solution {
             }
         }
         
-        return Arrays.stream(dp1[numLen - 1]).max().getAsInt();
+        return dp1[numLen - 1][0];
     }
 }
