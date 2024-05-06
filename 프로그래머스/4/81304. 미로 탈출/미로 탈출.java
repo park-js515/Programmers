@@ -1,3 +1,10 @@
+// https://loosie.tistory.com/341
+// 다익스트라를 수행하는데, trap를 고려한다. (다익스트라 + 비트마스킹)
+// 시작과 끝이 모두 트랩이 작동되거나, 작동되지 않는다면 기존의 방향대로 전진하면 된다.
+// 만약 두 방향이 다르다면 반대방향으로 움직이는 것을 고려한다.
+// 서로 다른 두 방 사이에 직접 연결된 길이 여러 개 존재할 수도 있습니다. -> 값이 중복일 수 있으므로 Math.min을 사용한다.
+
+
 import java.util.*;
 
 class Solution {
@@ -6,7 +13,7 @@ class Solution {
     private int[][] visited;
     private Map<Integer, Integer> map = new HashMap<>();
     private Set<Integer> set;
-    private List<Integer>[] adjList1, adjList2;
+    private List<Integer>[] adjList1, adjList2; // 순방향, 역방향
     
     private void init(int n, int[][] roads, int[] traps) {
         this.n = n;
