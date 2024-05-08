@@ -18,9 +18,7 @@ class Solution {
     }
     
     private int dfs(int n, int mul, int p) {
-        if (mul * 2 < p) {
-            return 0;
-        }
+        if (mul * 2 < p) return 0;
         if (n == 3 && mul == 1 && p == 0) return 1;
         if (n == 4 && mul == 1 && p == 1) return 1;
         if (n == 5 && mul == 1 && p == 2) return 1;
