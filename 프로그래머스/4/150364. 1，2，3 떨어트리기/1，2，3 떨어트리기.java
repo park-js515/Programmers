@@ -60,7 +60,7 @@ class Solution {
     private int[] getAnswer(int[] target) {
         List<Integer>[] list = new ArrayList[N + 1];
         List<Integer> answer = new ArrayList<>();
-        Map<Integer, Integer> temp = new HashMap<>();
+        int[] temp = new int[N + 1];
         for (int i = 0; i < N + 1; i++) {
             list[i] = new ArrayList<>();
         }
@@ -82,10 +82,8 @@ class Solution {
         }
         
         for (int k: order) {
-            answer.add(list[k].get(temp.getOrDefault(k, 0)));
-            temp.put(k, temp.getOrDefault(k, 0) + 1);
+            answer.add(list[k].get(temp[k]++));
         }
-        
         
         return answer.stream().mapToInt(Integer::intValue).toArray();
     }
@@ -94,8 +92,6 @@ class Solution {
         init(edges);
         
         int[] answer = {-1};    
-        
-        
         while (true) {
             int leaf = findLeaf();
             order.add(leaf);
