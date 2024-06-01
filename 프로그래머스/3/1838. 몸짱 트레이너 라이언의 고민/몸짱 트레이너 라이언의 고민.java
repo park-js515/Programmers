@@ -41,7 +41,7 @@ class Solution {
                             }
                         }
                         
-                        if (++cnt >= max) {
+                        if (++cnt == max) {
                             answer = d;
                             break point1;
                         }
