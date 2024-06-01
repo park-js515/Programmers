@@ -51,7 +51,6 @@ class Solution {
             }
         }
         
-        System.out.println(max);
         return answer;
     }
     
