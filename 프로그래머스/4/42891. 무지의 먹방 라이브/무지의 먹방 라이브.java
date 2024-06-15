@@ -30,7 +30,7 @@ class Solution {
                 sum += Math.min(f, mid);
             }
             
-            if (sum < k) {
+            if (sum < k + 1) {
                 left = mid + 1;
             } else {
                 right = mid;
@@ -55,13 +55,11 @@ class Solution {
             food_times[i] -= value;
         }
         
-        point: for (int t = 0; t < 2; t++) {
-            for (int i = 0; i < food_times.length; i++) {
-                if (food_times[i] > 0) {
-                    if (++sum > k) {
-                        answer = i + 1;
-                        break point;
-                    }
+        for (int i = 0; i < food_times.length; i++) {
+            if (food_times[i] > 0) {
+                if (++sum > k) {
+                    answer = i + 1;
+                    break;
                 }
             }
         }
