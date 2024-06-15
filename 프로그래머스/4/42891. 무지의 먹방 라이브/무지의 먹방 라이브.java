@@ -1,83 +1,71 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
-
-// 몇 번을 돌릴 지 추론 후 적절한 값을 찾는다.
-
 class Solution {
-    private final int MAX = 100_000_000;
-    private int n;
-    private long k;
-    private Map<Integer, Long> map;
     
-    private long findLowerBound() {
-        long start = 1;
-        long end = MAX;
+    private boolean check(int[] food_times, long k) {
+        long sum = 0;
+        for (int f: food_times) {
+            sum += f;
+        }
         
-        while (start < end) {
-            long mid = (start + end) / 2;
+        return sum > k;
+    }
+    
+    private int getMax(int[] food_times) {
+        int max = 0;
+        for (int f: food_times) {
+            max = Math.max(max, f);
+        }
+        
+        return max;
+    }
+
+    private int getLowerBound(int[] food_times, long k) {
+        int left = 1;
+        int right = getMax(food_times);
+        
+        while (left < right) {
+            int mid = (left + right) / 2;
+            
             long sum = 0;
-            for (int key: map.keySet()) {
-                sum += Math.min(mid, key) * map.get(key);
+            for (int f: food_times) {
+                sum += Math.min(f, mid);
             }
             
             if (sum < k) {
-                start = mid + 1;
+                left = mid + 1;
             } else {
-                end = mid;
+                right = mid;
             }
         }
         
-        return end;
+        return left;
     }
     
     public int solution(int[] food_times, long k) {
-        this.n = food_times.length;
-        this.k = k;
-        this.map = new HashMap<>();
-        long check = 0;
-        for (int f: food_times) {
-            map.put(f, map.getOrDefault(f, 0L) + 1L);
-            check += f;
+        int answer = -1;
+        if (check(food_times, k) == false) {
+            return answer;
         }
         
-        if (check <= k) {
-            return -1;
-        }
-        
-        long lb = findLowerBound();
+        int lb = getLowerBound(food_times, k);
         long sum = 0;
-        for (int key: map.keySet()) {
-            sum += Math.min(lb - 1, key) * map.get(key);
+        
+        for (int i = 0; i < food_times.length; i++) {
+            int value = Math.min(lb - 1, food_times[i]);
+            sum += value;
+            food_times[i] -= value;
         }
         
-        int answer = 0;
-        for (int i = 0; i < n; i++) {
-            if (food_times[i] >= lb) {
-                sum++;
-                
-                if (sum == k + 1) {
-                    answer = i + 1;
-                    break;
+        point: for (int t = 0; t < 2; t++) {
+            for (int i = 0; i < food_times.length; i++) {
+                if (food_times[i] > 0) {
+                    if (++sum > k) {
+                        answer = i + 1;
+                        break point;
+                    }
                 }
             }
         }
         
-        if (sum < k + 1) {
-            lb++;
-            for (int i = 0; i < n; i++) {
-                if (food_times[i] >= lb) {
-                    sum++;
-                }
-                
-                if (sum == k + 1) {
-                    answer = i + 1;
-                    break;
-                }
-            }
-        }
-
         return answer;
     }
 }
