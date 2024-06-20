@@ -1,3 +1,9 @@
+// 온도 하강
+// 온도 유지
+// 온도 상승
+// 에어컨 끔
+// Array로 표현하기 어려운 범위를 HashMap으로 품: 속도와 메모리 측면에서 손실 발생하나 유연함
+
 import java.util.HashMap;
 import java.util.Collections;
 
