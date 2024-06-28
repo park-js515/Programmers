@@ -3,9 +3,9 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Main {
 
@@ -36,9 +36,9 @@ public class Main {
 
         Arrays.sort(arr);
 
-        List<Character> vovelList = new ArrayList<>(Arrays.asList(vowel));
+        Set<Character> vovelSet = new HashSet<>(Arrays.asList(vowel));
         for (int i = 0; i < C; i++) {
-            isVowel[i] = vovelList.contains(arr[i]);
+            isVowel[i] = vovelSet.contains(arr[i]);
         }
     }
 
