@@ -29,7 +29,7 @@
   - 이것은 처음부터 구체적으로 구성해도 좋다.
 - 객체 클래스가 필요하다면 구현한다.
   - 이 과정에서 정렬이 필요하면 `implements Comparable<T>`, `@Override public int compareTo(T o)`를 구현을 고려한다.
-  - 값의 동등성을 고려해야할 경우, `@Override public boolean equals(Object o)`, `@Override public int hasCode()`를 반드시 구현한다.
+  - 값의 동등성을 고려해야할 경우, `@Override public boolean equals(Object o)`, `@Override public int hashCode()`를 반드시 구현한다.
   - 생성자를 통해서 객체를 만드는 것이 바람직하며, `equals()`, `hashCode()`를 고려해 정렬된 값으로 초기화하는 것도 고려해야 할 수 있다.
 - 필요한 메서드(예를 들면 bfs, binarySearch)들을 구현하면서 적절하게 쪼개서 함수를 구현한다.
 
