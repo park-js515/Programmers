@@ -3,7 +3,7 @@ import java.util.Arrays;
 
 class Solution {
     public int[] solution(int N, int[] stages) {
-        int[] dat = new int[502];
+        int[] dat = new int[N + 2];
         for (int stage: stages) {
             dat[stage]++;
         }
