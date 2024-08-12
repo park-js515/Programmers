@@ -1,27 +1,14 @@
-import java.util.Set;
-import java.util.HashSet;
-
 class Solution {
-    private int getDivisor(int n) {
-        Set<Integer> set = new HashSet<>();
-        for (int i = 1; i <= Math.sqrt(n); i++) {
-            if (n % i == 0) {
-                set.add(n / i);
-                set.add(i);
+    public int solution(int number, int limit, int power) {
+        int[] divisors = new int[number + 1];
+        for (int i = 1; i <= number; i++) {
+            for (int j = 1; j <= number / i; j++) {
+                divisors[i * j]++;
             }
         }
         
-        return set.size();
-    }
-    
-    public int solution(int number, int limit, int power) {
-        int[] divisors = new int[number];
-        for (int i = 1; i <= number; i++) {
-            divisors[i - 1] = getDivisor(i);
-        }
-        
         int answer = 0;
-        for (int i = 0; i < number;i ++) {
+        for (int i = 1; i <= number; i ++) {
             answer += divisors[i] > limit ? power : divisors[i];
         }
         
