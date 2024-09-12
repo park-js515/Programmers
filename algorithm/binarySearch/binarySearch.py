@@ -1,4 +1,5 @@
 arr = [1, 1, 1, 1, 2, 2, 2, 3, 3, 3]
+# mid = left + (right - left) // 2
 
 
 def lowerBound1(arr: list[int], target: int):
