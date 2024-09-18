@@ -11,7 +11,6 @@ class Solution {
             map2.put(ch2, map2.getOrDefault(ch2, 0) + 1);
         }
         
-        if (map1.equals(map2)) return 1;
-        return 0;
+        return map1.equals(map2) ? 1 : 0;
     }
 }
