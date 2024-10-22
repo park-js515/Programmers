@@ -14,11 +14,6 @@ class Solution {
             }
         }
         
-        // for (int[] i : dp) {
-        //     System.out.println(java.util.Arrays.toString(i));
-        // }
-        System.out.println();
-        
         for (int i = 1; i < r; i++) {
             for (int j = 1; j < c; j++) {
                 if (dp[i][j] == 1) {
@@ -34,11 +29,6 @@ class Solution {
                 answer = Math.max(answer, mat);
             }
         }
-        
-        // for (int[] i : dp) {
-        //     System.out.println(java.util.Arrays.toString(i));
-        // }
-        // System.out.println(max);
         
         return answer;
     }
