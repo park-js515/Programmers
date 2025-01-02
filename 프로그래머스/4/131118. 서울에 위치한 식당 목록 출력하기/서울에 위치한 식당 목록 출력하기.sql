@@ -1,3 +1,4 @@
+-- '%서울%' 을 사용하면 오류가 나는 문제 (문제 오류로 보임)
 SELECT A.REST_ID, A.REST_NAME, A.FOOD_TYPE, A.FAVORITES, A.ADDRESS, B.SCORE
 FROM REST_INFO A
 JOIN 
