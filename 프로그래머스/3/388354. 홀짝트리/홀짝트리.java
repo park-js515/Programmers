@@ -14,7 +14,7 @@ class Solution {
         }
         
         for (int node : nodes) {
-            cnt.put(node, -1);
+            cnt.put(node, -1); // edge의 기본값을 -1로 두고, 루트 노드에 + 1 을 해주는 방식으로 해결
         }
         
         for (int[] edge : edges) {
@@ -56,7 +56,7 @@ class Solution {
             int[] status = {0, 0};
             int[] checkValue = {0, 0};
             
-            if (list.size() == 1 && list.get(0) % 2 == 0) {
+            if (list.size() == 1 && list.get(0) % 2 == 0) { // 위에서 언급한 -1 초기값으로 인해 필터링 해야함.
                 answer[0]++;
                 continue;
             }
