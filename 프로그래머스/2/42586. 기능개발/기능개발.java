@@ -1,41 +1,45 @@
-import java.util.ArrayList;
+import java.util.*;
 
 class Solution {
+    private int getCount(int progress, int speed) {
+        double a = 100 - progress;
+        double b = a / speed;
+        double c = Math.ceil(b);
+        
+        return (int) c;
+    }
+    
     public int[] solution(int[] progresses, int[] speeds) {
-        int len = progresses.length;
-        int[] completeDate = new int[len];
-        for (int i = 0; i < len; i++) {
-            int leftProgress = 100 - progresses[i];
+        int n = progresses.length;
+        int[] arr = new int[n];
+        
+        for (int i = 0; i < n; i++) {
+            int progress = progresses[i];
             int speed = speeds[i];
-            int q = leftProgress / speed;
-            if (leftProgress % speed != 0) {
-                q++;
-            };
-            completeDate[i] = q;
+            arr[i] = getCount(progress, speed);
         }
         
-        for (int i = 1; i < len; i++) {
-            completeDate[i] = Math.max(completeDate[i - 1], completeDate[i]);
+        for (int i = 1; i < n; i++) {
+            arr[i] = Math.max(arr[i - 1], arr[i]);
         }
         
-        ArrayList<Integer> list = new ArrayList<>();
-        int nowValue = completeDate[0];
+        ArrayList<Integer> list = new ArrayList<>();        
+        int num = arr[0];
         int cnt = 1;
-        for (int i = 1; i < len; i++) {
-            if (nowValue == completeDate[i]) {
-                cnt++;
-            } else {
+        
+        for (int i = 1; i < n; i++) {
+            int nextNum = arr[i];
+            
+            if (num != nextNum) {
                 list.add(cnt);
-                nowValue = completeDate[i];
                 cnt = 1;
+                num = nextNum;
+            } else {
+                cnt++;
             }
         }
         list.add(cnt);
         
-        int[] answer = new int[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            answer[i] = list.get(i);
-        }
-        return answer;
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
 }
