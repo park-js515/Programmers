@@ -3,19 +3,19 @@ import java.util.*;
 public class Solution {
     public int[] solution(int[] arr) {
         ArrayDeque<Integer> queue = new ArrayDeque<>();
-        queue.add(arr[0]);
         
-        for (int i = 1; i < arr.length; i++) {
-            if (queue.peekLast() != arr[i]) {
-                queue.add(arr[i]);
+        for (int i : arr) {
+            if (queue.isEmpty() || queue.peekLast() != i) {
+                queue.add(i);
             }
         }
         
-        int size = queue.size();
-        int[] answer = new int[size];
-        for (int i = 0; i < size; i++) {
-            answer[i] = queue.poll();
+        int k = queue.size();
+        int[] ans = new int[k];
+        for (int i = 0 ; i < k; i++) {
+            ans[i] = queue.poll();
         }
-        return answer;
+        
+        return ans;
     }
 }
