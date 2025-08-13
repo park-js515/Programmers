@@ -1,48 +1,42 @@
-import java.util.PriorityQueue;
-import java.util.ArrayDeque;
+import java.util.*;
 
 class Solution {
     public int solution(int[] priorities, int location) {
-        PriorityQueue<Item> pq = new PriorityQueue<>();
+        int n = priorities.length;
+        
         ArrayDeque<Item> queue = new ArrayDeque<>();
-        for (int i = 0; i < priorities.length; i++) {
-            if (i != location) {
-                queue.add(new Item(priorities[i], false));   
-            } else {
-                queue.add(new Item(priorities[i], true));
-            }
-            pq.add(new Item(priorities[i], false));
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.comparingInt(o -> -o));
+        for (int i = 0; i < n; i++) {
+            int p = priorities[i];
+            queue.add(new Item(p, i));
+            pq.add(p);
         }
         
-        int idx = 0;
+        int answer = 1;
+        int val = pq.poll();
         while (!queue.isEmpty()) {
             Item item = queue.poll();
-            if (item.priority != pq.peek().priority) {
-                queue.add(item);
-            } else {
-                idx++;
-                pq.poll();
-                if (item.target) {
-                    return idx;
+            
+            if (val == item.p) {
+                if (location == item.l) {
+                    break;
                 }
+                val = pq.poll();
+                answer++;
+            } else {
+                queue.add(item);
             }
         }
         
-        return idx;
+        return answer;
     }
     
-    private static class Item implements Comparable<Item> {
-        int priority;
-        boolean target;
+    private class Item {
+        int p, l;
         
-        Item (int priority, boolean target) {
-            this.priority = priority;
-            this.target = target;
-        }
-        
-        @Override
-        public int compareTo(Item o) {
-            return o.priority - this.priority;
+        public Item(int p, int l) {
+            this.p = p;
+            this.l = l;
         }
     }
 }
