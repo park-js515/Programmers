@@ -1,43 +1,42 @@
-import java.util.ArrayDeque;
+import java.util.*;
 
 class Solution {
     public int solution(int bridge_length, int weight, int[] truck_weights) {
-        ArrayDeque<int[]> queue = new ArrayDeque<>();
-        int w = 0;
-        int queueSize = 0;
-        int idx = 0;
-        int len = truck_weights.length;
-        int answer = 1;
+        int time = 1;
+        int total = 0;
+        ArrayDeque<Truck> queue = new ArrayDeque<>();
         
-        while (true) {
-            if (!queue.isEmpty()) {
-                int[] peek = queue.peek();
-                if (peek[1] < answer) {
-                    System.out.println(peek[1]);
-                    queue.poll();
-                    w -= peek[0];
-                    queueSize--;
-                }
+        for (int i = 0; i < truck_weights.length; i++) {
+            if (!queue.isEmpty() && queue.peek().t + bridge_length < time) {
+                total -= queue.poll().w;
             }
-        
-            if (idx < len) {
-                if (queueSize < bridge_length && w + truck_weights[idx] <= weight) {
-                    queue.add(new int[] {truck_weights[idx], answer + bridge_length - 1});
-                    w += truck_weights[idx++];
-                    queueSize++;
-                    answer++;
-                } else {
-                    answer = queue.peek()[1] + 1;
-                }
-            } else {
-                if (!queue.isEmpty()) {
-                    int[] peekLast = queue.peekLast();
-                    answer = peekLast[1] + 1;
-                }
-                break;
+            
+            int w = truck_weights[i];
+            while (total + w > weight) {
+                Truck truck = queue.poll();
+                total -= truck.w;
+                time = truck.t + bridge_length;
             }
+            
+            queue.add(new Truck(w, time));
+            total += w;
+            time++;
         }
         
-        return answer;
+        return queue.peekLast().t + bridge_length;
+    }
+    
+    private class Truck {
+        int w, t;
+        
+        public Truck(int w, int t) {
+            this.w = w;
+            this.t = t;
+        }
+        
+        @Override
+        public String toString() {
+            return "[w = " + w + ", t = " + t + "]";
+        }
     }
 }
