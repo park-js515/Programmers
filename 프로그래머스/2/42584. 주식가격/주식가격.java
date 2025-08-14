@@ -2,40 +2,39 @@ import java.util.ArrayDeque;
 
 class Solution {
     public int[] solution(int[] prices) {
+        int n = prices.length;
         ArrayDeque<Stock> stack = new ArrayDeque<>();
-        int len = prices.length;
-        int[] answer = new int[len];
-        int time = 0;
+        int[] answer = new int[n];
         
-        while (time < len) {
-            if (!stack.isEmpty()) {
-                while (!stack.isEmpty()) {
-                    Stock stock = stack.peekLast();
-                    if (stock.price > prices[time]) {
-                        stack.pollLast();
-                        answer[stock.time] = time - stock.time;
-                    } else {
-                        break;
-                    }
-                }
+        for (int i = 0; i < n; i++) {
+            Stock stock = new Stock(prices[i], i);
+            
+            while (!stack.isEmpty() && stack.peekLast().p > stock.p) {
+                Stock out = stack.pollLast();
+                answer[out.idx] = i - out.idx;
             }
-            stack.add(new Stock(prices[time], time));
-            time++;
+            
+            stack.add(stock);
         }
-        time--;
-        while (!stack.isEmpty()) {
-            Stock stock = stack.pollLast();
-            answer[stock.time] = time - stock.time;
+        
+        if (!stack.isEmpty()) {
+            int lastIdx = stack.pollLast().idx;
+            
+            while (!stack.isEmpty()) {
+                Stock temp = stack.pollLast();
+                answer[temp.idx] = lastIdx - temp.idx;
+            }
         }
+        
         return answer;
     }
     
-    private static class Stock {
-        int price, time;
+    private class Stock {
+        int p, idx;
         
-        Stock(int price, int time) {
-            this.price = price;
-            this.time = time;
+        public Stock(int p, int idx) {
+            this.p = p;
+            this.idx = idx;
         }
     }
 }
