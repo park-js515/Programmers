@@ -9,10 +9,7 @@ class Solution {
             String c = cloth[0];
             String t = cloth[1];
             
-            if (!map.containsKey(t)) {
-                map.put(t, new HashSet<String>());   
-            }
-            map.get(t).add(c);
+            map.computeIfAbsent(t, key -> new HashSet<String>()).add(c);
         }
         
         int answer = 1;
