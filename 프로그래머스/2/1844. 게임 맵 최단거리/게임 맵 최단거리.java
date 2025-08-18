@@ -1,34 +1,62 @@
-import java.util.ArrayDeque;
+import java.util.*;
 
 class Solution {
-    private static int bfs(int[][] maps) {
+    private final int MAX = 100_000;
+    private int n, m;
+    private int[][] maps, distance;
+    
+    private void init(int[][] maps) {
+        this.n = maps.length;
+        this.m = maps[0].length;
+        this.maps = maps;
+        this.distance = new int[n][m];
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                distance[i][j] = MAX;
+            }
+        }
+    }
+    
+    private int bfs() {
         int[][] d = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-        ArrayDeque<int[]> queue = new ArrayDeque<>();
-        int rows = maps.length;
-        int cols = maps[0].length;
-        int[][] visited = new int[rows][cols];
-        queue.add(new int[] {0, 0});
-        visited[0][0] = 1;
+        ArrayDeque<Node> queue = new ArrayDeque<>();
+        
+        distance[0][0] = 1;
+        queue.add(new Node(0, 0));
         
         while (!queue.isEmpty()) {
-            int[] now = queue.poll();
+            Node node = queue.poll();
+            
             for (int i = 0; i < 4; i++) {
-                int drow = now[0] + d[i][0];
-                int dcol = now[1] + d[i][1];
+                int dr = node.r + d[i][0];
+                int dc = node.c + d[i][1];
                 
-                if (drow < 0 || drow >= rows || dcol < 0 || dcol >= cols || 
-                    visited[drow][dcol] != 0 || maps[drow][dcol] == 0) continue;
-                visited[drow][dcol] = visited[now[0]][now[1]] + 1;
-                if (drow == rows - 1 && dcol == cols - 1) {
-                    return visited[drow][dcol];
+                if (dr < 0 || dr >= n || dc < 0 || dc >= m || 
+                    maps[dr][dc] == 0 || distance[node.r][node.c] + 1 >= distance[dr][dc]) {
+                    continue;
                 }
-                queue.add(new int[] {drow, dcol});
+                
+                distance[dr][dc] = distance[node.r][node.c] + 1;
+                queue.add(new Node(dr, dc));
             }
         }
         
-        return -1;
+        return distance[n - 1][m - 1] != MAX ? distance[n - 1][m - 1] : -1;
     }
+    
     public int solution(int[][] maps) {
-        return bfs(maps);
+        init(maps);
+        
+        return bfs();
+    }
+    
+    private class Node {
+        int r, c;
+        
+        public Node(int r, int c) {
+            this.r = r;
+            this.c = c;
+        }
     }
 }
