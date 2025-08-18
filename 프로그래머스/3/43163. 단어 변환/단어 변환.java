@@ -1,79 +1,60 @@
+import java.util.*;
+
 class Solution {
-    private static int answer = Integer.MAX_VALUE;
-    private static boolean[] visited;
-    private static int wordsListLength;
-    private static int targetIdx = -1;
-    private static boolean getAvailablity(String before, String after) {
-        int len = before.length();
-        int differ = 0;
-        
-        for (int i = 0; i < len; i++) {
-            if (before.charAt(i) != after.charAt(i)) {
-                differ++;
+    private boolean check(int n, String s1, String s2) {
+        int cnt = 0;
+        for (int i = 0; i < n; i++) {
+            if (s1.charAt(i) != s2.charAt(i)) {
+                cnt++;
             }
         }
         
-        return differ == 1;
+        return cnt == 1;
     }
-    private static void DFS(boolean[][] confusionMatrix, String[] wordsList, int beforeIndex, int depth) {
-        if (depth != 0 && answer <= depth) return;
-        if (depth == 0) {
-            visited[0] = true;
-            for (int i = 1; i < wordsListLength; i++) {
-                if (confusionMatrix[0][i]) {
-                    if (targetIdx == i) {
-                        answer = 1;
-                        return;
-                    }
-                    
-                    visited[i] = true;
-                    DFS(confusionMatrix, wordsList, i, 1);
-                    visited[i] = false;
-                }
-            visited[0] = false;
-            }
-        } else {
-            for (int i = 1; i < wordsListLength; i++) {
-                if (!visited[i] && i == targetIdx && confusionMatrix[beforeIndex][i]) {
-                    answer = depth + 1;
-                    return;
-                }
-                if (!visited[i] && confusionMatrix[beforeIndex][i]) {
-                    visited[i] = true;
-                    DFS(confusionMatrix, wordsList, i, depth + 1);
-                    visited[i] = false;
+    
+    private int bfs(int begin, int target, boolean[][] convertMatrix) {
+        ArrayDeque<Integer> queue = new ArrayDeque<>();
+        Map<Integer, Integer> cntMap = new HashMap<>();
+        int MAX = 50;
+        queue.add(begin);
+        cntMap.put(begin, 0);
+        
+        while (!queue.isEmpty()) {
+            int now = queue.poll();
+            
+            for (int i = 0; i < convertMatrix.length; i++) {
+                if (convertMatrix[now][i] && cntMap.getOrDefault(i, MAX) > cntMap.get(now) + 1) {
+                    cntMap.put(i, cntMap.get(now) + 1);
+                    queue.add(i);
                 }
             }
         }
+        
+        return cntMap.getOrDefault(target, 0);
     }
     
     public int solution(String begin, String target, String[] words) {
-        for (int i = 0; i < words.length; i++) {
-            if (words[i].equals(target)) {
-                targetIdx = i + 1;
-                break;
-            }
+        int n = words.length + 1;
+        boolean[][] convertMatrix = new boolean[n][n];
+        List<String> list = new ArrayList<>();
+        
+        list.add(begin);
+        for (int i = 0; i < n - 1; i++) {
+            list.add(words[i]);
         }
         
-        if (targetIdx == -1) {
+        if (!list.contains(target)) {
             return 0;
         }
         
-        wordsListLength = words.length + 1;
-        String[] wordsList = new String[wordsListLength];
-        boolean[][] confusionMatrix = new boolean[wordsListLength][wordsListLength];
-        visited = new boolean[wordsListLength];
-        wordsList[0] = begin;
-        for (int i = 1; i < wordsListLength; i++) {
-            wordsList[i] = words[i - 1];
-        }
-        for (int i = 0; i < wordsListLength; i++) {
-            for (int j = 0; j < wordsListLength; j++) {
-                confusionMatrix[i][j] = getAvailablity(wordsList[i], wordsList[j]);
+        int wordLength = begin.length();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                convertMatrix[i][j] = check(wordLength, list.get(i), list.get(j));
+                convertMatrix[j][i] = convertMatrix[i][j];
             }
         }
         
-        DFS(confusionMatrix, wordsList, 0, 0);
-        return answer != Integer.MAX_VALUE ? answer : 0;
+        return bfs(0, list.indexOf(target), convertMatrix);
     }
 }
