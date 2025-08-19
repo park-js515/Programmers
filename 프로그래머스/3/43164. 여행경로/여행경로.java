@@ -1,58 +1,63 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Arrays;
+import java.util.*;
 
 class Solution {
+    private int n;
+    private Map<String, List<Flight>> map = new HashMap<>();
     private boolean findAnswer = false;
-    private String[] answer;
-    private HashMap<String, ArrayList<City>> map = new HashMap<>();
-    private void dfs(int len, int depth, String from) {
-        if (depth == len + 1) {
+    
+    private void init(String[][] tickets) {
+        this.n = tickets.length + 1;
+        Arrays.sort(tickets, (o1, o2) -> o1[1].compareTo(o2[1]));
+        for (String[] ticket : tickets) {
+            String from = ticket[0];
+            String to = ticket[1];
+            
+            map.computeIfAbsent(from, key -> new ArrayList<>()).add(new Flight(to));
+        }
+    }
+    
+    private void dfs(int depth, String arr[]) {
+        if (findAnswer) return;
+        if (depth == n) {
             findAnswer = true;
             return;
         }
-        if (!map.containsKey(from)) {
+        
+        if (!map.containsKey(arr[depth - 1])) {
             return;
         }
-        for (City city: map.get(from)) {
+        for (Flight f : map.get(arr[depth - 1])) {
             if (findAnswer) return;
-            if (!city.visited) {
-                city.visited = true;
-                answer[depth] = city.name;
-                dfs(len, depth + 1, city.name);
-                city.visited = false;
+            if (!f.visited) {
+                f.visited = true;
+                arr[depth] = f.to;
+                dfs(depth + 1, arr);
+                f.visited = false;
             }
         }
     }
     
     public String[] solution(String[][] tickets) {
-        Arrays.sort(tickets, (o1, o2) -> {
-            return o1[1].compareTo(o2[1]);
-        });
-        
-        for (String[] ticket: tickets) {
-            if (map.containsKey(ticket[0])) {
-                map.get(ticket[0]).add(new City(ticket[1]));
-            } else {
-                map.put(ticket[0], new ArrayList<>());
-                map.get(ticket[0]).add(new City(ticket[1]));
-            }
-        }
-        
-        int len = tickets.length;
-        answer = new String[len + 1];
+        init(tickets);
+        String[] answer = new String[n];
         answer[0] = "ICN";
-        dfs(len, 1, "ICN");
         
+        dfs(1, answer);
         return answer;
     }
     
-    private class City {
-        String name;
-        boolean visited = false;
-
-        public City(String name) {
-            this.name = name;
+    private class Flight {
+        String to;
+        boolean visited;
+        
+        public Flight(String to) {
+            this.to = to;
+            this.visited = false;
+        }
+        
+        @Override
+        public String toString() {
+            return to;
         }
     }
 }
