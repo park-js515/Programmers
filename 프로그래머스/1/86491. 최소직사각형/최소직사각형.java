@@ -1,18 +1,23 @@
 class Solution {
     public int solution(int[][] sizes) {
-        int w = 0, h = 0;
-        for (int[] size: sizes) {
-            int x = size[0];
-            int y = size[1];
-            if (x > y) {
-                int temp = x;
-                x = y;
-                y = temp;
+        for (int[] size : sizes) {
+            int a = size[0];
+            int b = size[1];
+            
+            if (a > b) {
+                size[0] = b;
+                size[1] = a;
             }
-            w = Math.max(w, y);
-            h = Math.max(h, x);
         }
         
-        return w * h;
+        int a = 0;
+        int b = 0;
+        
+        for (int[] size : sizes) {
+            a = Math.max(a, size[0]);
+            b = Math.max(b, size[1]);
+        }
+        
+        return a * b;
     }
 }
