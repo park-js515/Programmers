@@ -1,45 +1,47 @@
+import java.util.*;
+
 class Solution {
-    private static int[] getDecimal(int n) {
-        boolean[] list = new boolean[n + 1];
-        int cnt = 0;
-        for (int i = 1; i <= Math.sqrt(n); i++) {
-            if (n % i == 0) {
-                list[i] = true;
-                list[n / i] = true;
+    private void getPairs(int sum, List<Pair> list) {
+        for (int i = 3; i <= (int) Math.sqrt(sum); i++) {
+            if (sum % i == 0) {
+                list.add(new Pair(sum / i, i));
             }
         }
-        for (int i = 1; i <= n; i++) {
-            if (list[i]) {
-                cnt++;
-            }
-        }
-        int[] ret = new int[cnt];
-        int index = 0;
-        for (int i = 0; i <= n; i++) {
-            if (list[i]) {
-                ret[index++] = i;
-            }
-        }
-            
-        return ret;
     }
     
-    public int[] solution(int brown, int yellow) {
-        int[] answer = {0, 0};
-        int[] decimals = getDecimal(yellow);
-        int len = decimals.length;
+    private int[] getAnswer(int yellow, List<Pair> list) {
+        Pair pair = new Pair(0, 0);
         
-        for (int i = 0; i <= len / 2; i++) {
-            int height = decimals[i];
-            int width = decimals[len - 1 - i];
-            if (brown == 4 + (height + width) * 2) {
-                answer[0] = width + 2;
-                answer[1] = height + 2;
+        for (Pair p : list) {
+            if ((p.x - 2) * (p.y - 2) == yellow) {
+                pair = p;
                 break;
             }
         }
         
-        
+        int[] answer = {pair.x, pair.y};
         return answer;
+    }
+        
+    public int[] solution(int brown, int yellow) {
+        int sum = brown + yellow;
+        List<Pair> list = new ArrayList<>();
+        getPairs(sum, list);
+
+        return getAnswer(yellow, list);
+    }
+    
+    private class Pair {
+        int x, y;
+        
+        public Pair(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+        
+        @Override
+        public String toString() {
+            return "[" + x + ", " + y + "]";
+        }
     }
 }
