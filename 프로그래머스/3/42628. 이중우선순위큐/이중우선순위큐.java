@@ -1,62 +1,66 @@
-import java.util.PriorityQueue;
-import java.util.Comparator;
+import java.util.*;
 
 class Solution {
-    private static int index = 0;
-    private static boolean[] deleteList = new boolean[1000000];
-    private static PriorityQueue<int[]> maxQ = new PriorityQueue<>(Comparator.comparingInt(o -> -o[0]));
-    private static PriorityQueue<int[]> minQ = new PriorityQueue<>(Comparator.comparingInt(o -> o[0]));
-    private static void insert(int num) {
-        maxQ.add(new int[] {num, index});
-        minQ.add(new int[] {num, index++});
+    private int pint(String s) {
+        return Integer.parseInt(s);
     }
-    private static void delete(int operator) {
-        if (operator == -1) {
-            while (!minQ.isEmpty() && deleteList[minQ.peek()[1]]) {
-                minQ.poll();
-            }
-            if (minQ.isEmpty()) return;
-            deleteList[minQ.poll()[1]] = true;
-        }
-        else {
-            while (!maxQ.isEmpty() && deleteList[maxQ.peek()[1]]) {
-                maxQ.poll();
-            }
-            if (maxQ.isEmpty()) return;
-            deleteList[maxQ.poll()[1]] = true;
-        }
-    }
-    
     
     public int[] solution(String[] operations) {
-        for (int op = 0; op < operations.length; op++) {
-            String[] operation = operations[op].split(" ");
-            char oper = operation[0].charAt(0);
-            int num = Integer.parseInt(operation[1]);
-            
-            if (oper == 'I') {
-                insert(num);
-            } 
-            else {
-                delete(num);
-            }
-        }
+        PriorityQueue<Item> maxQ = new PriorityQueue<>((o1, o2) -> Integer.compare(o2.val, o1.val));
+        PriorityQueue<Item> minQ = new PriorityQueue<>((o1, o2) -> Integer.compare(o1.val, o2.val));
         
-        while (!minQ.isEmpty() && deleteList[minQ.peek()[1]]) {
-            minQ.poll();
-        }
-        while (!maxQ.isEmpty() && deleteList[maxQ.peek()[1]]) {
-            maxQ.poll();
+        point : for (String op : operations) {
+            String[] splited = op.split(" ");
+            char comm = splited[0].charAt(0);
+            int num = pint(splited[1]);
+            
+            if (comm == 'I') {
+                Item item = new Item(num);
+                maxQ.add(item);
+                minQ.add(item);
+            } else {
+                PriorityQueue<Item> queue;
+                
+                if (num == 1) {
+                    queue = maxQ;
+                } else {
+                    queue = minQ;
+                }
+                
+                while (!queue.isEmpty()) {
+                    Item current = queue.poll();
+                    if (!current.deleted) {
+                        current.deleted = true;
+                        continue point;
+                    }
+                }
+            }
         }
         
         int[] answer = {0, 0};
-        if (!minQ.isEmpty()) {
-            answer[1] = minQ.peek()[0];
+        while (!maxQ.isEmpty() && maxQ.peek().deleted) {
+            maxQ.poll();
+        }
+        while (!minQ.isEmpty() && minQ.peek().deleted) {
+            minQ.poll();
         }
         if (!maxQ.isEmpty()) {
-            answer[0] = maxQ.peek()[0];
+            answer[0] = maxQ.peek().val;
+        }
+        if (!minQ.isEmpty()) {
+            answer[1] = minQ.peek().val;
         }
         
         return answer;
+    }
+    
+    private class Item {
+        int val;
+        boolean deleted;
+        
+        public Item(int val) {
+            this.val = val;
+            deleted = false;
+        }
     }
 }
