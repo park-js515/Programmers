@@ -1,17 +1,14 @@
-import java.util.*;
-
 class Solution {
     public String solution(String s) {
-        ArrayList<Integer> numbers = new ArrayList<>();
-        String[] strs = s.split(" ");      
+        String[] splited = s.split(" ");
+        int min, max;
+        min = max = Integer.parseInt(splited[0]);
         
-        for (String str: strs) {
-            numbers.add(Integer.parseInt(str));
+        for (int i = 1; i < splited.length; i++) {
+            min = Math.min(min, Integer.parseInt(splited[i]));
+            max = Math.max(max, Integer.parseInt(splited[i]));
         }
-        int len = numbers.size();
-        Collections.sort(numbers);
-        String answer = "" + numbers.get(0) + " " + numbers.get(len - 1);
         
-        return answer;
+        return min + " " + max;
     }
 }
