@@ -1,3 +1,5 @@
+# 결과는 총 누계 거리를 기준으로 내림차순 정렬해주세요.
+# SELECT 값이 아닌, 즉 ROUND 하기 전의 값으로 하라는 것. 설명을 애매하게 해서 이상한 문제
 SELECT 
     ROUTE, 
     CONCAT(ROUND(SUM(D_BETWEEN_DIST), 1), 'km') AS TOTAL_DISTANCE, 
