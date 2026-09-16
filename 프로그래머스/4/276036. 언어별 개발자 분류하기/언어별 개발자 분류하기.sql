@@ -1,3 +1,5 @@
+# SUM을 통해서 BIT MASK로 구분한 것을 분류해서 확인할 수 있게 된다.
+
 WITH C AS (
     SELECT
         (SELECT SUM(CODE) FROM SKILLCODES WHERE CATEGORY = 'Front End') AS FRONT_END,
