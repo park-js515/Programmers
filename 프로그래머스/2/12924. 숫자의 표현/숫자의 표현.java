@@ -11,7 +11,8 @@ class Solution {
                 answer++;
                 sum += ++right;
             } else {
-                sum -= left++;
+                // sum -= left++;
+                sum -= ++left;
             }
         }
         return answer;
