@@ -5,7 +5,6 @@ public class Solution {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         
-        String type = n % 2 == 0 ? "even" : "odd";
-        System.out.println(n + " is " + type);
+        System.out.println(n + " is " + ((n % 2) == 0 ? "even" : "odd"));
     }
 }
