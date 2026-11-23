@@ -1,10 +1,9 @@
 class Solution {
+    private int pint(String s) {
+        return Integer.parseInt(s);
+    }
+    
     public int solution(int a, int b) {
-        String s = Integer.toString(a) + Integer.toString(b);
-        int c = Integer.parseInt(s);
-        int d = 2 * a * b;
-        
-        if (c == d)  return c;
-        return Math.max(c, d);
+        return Math.max(pint(Integer.toString(a) + Integer.toString(b)), 2 * a * b);
     }
 }
