@@ -5,16 +5,12 @@ public class Solution {
         Scanner sc = new Scanner(System.in);
         String a = sc.next();
         
-        StringBuilder sb = new StringBuilder(a);
         for (int i = 0; i < a.length(); i++) {
-            char ch = sb.charAt(i);
-            if (Character.isLowerCase(ch)) {
-                sb.setCharAt(i, Character.toUpperCase(ch));
+            if (Character.isUpperCase(a.charAt(i))) {
+                System.out.print(Character.toLowerCase(a.charAt(i)));
             } else {
-                sb.setCharAt(i, Character.toLowerCase(ch));
+                System.out.print(Character.toUpperCase(a.charAt(i)));
             }
         }
-        
-        System.out.println(sb);
     }
 }
