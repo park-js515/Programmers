@@ -1,12 +1,14 @@
 class Solution {
     public int solution(int[] num_list) {
-        int sum = 0;
-        int mul = 1;
-        for (int num: num_list) {
-            sum += num;
-            mul *= num;
+        int t1 = 1;
+        int t2 = 0;
+        for (int i : num_list) {
+            t1 *= i;
+            t2 += i;
         }
         
-        return Math.pow(sum, 2) > mul ? 1 : 0;
+        t2 *= t2;
+        
+        return t1 < t2 ? 1 : 0;
     }
 }
