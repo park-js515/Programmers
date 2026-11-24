@@ -1,9 +1,13 @@
 class Solution {
+    private void chg(int[] arr, int a, int b) {
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+    
     public int[] solution(int[] arr, int[][] queries) {
         for (int[] query : queries) {
-            int temp = arr[query[0]];
-            arr[query[0]] = arr[query[1]];
-            arr[query[1]] = temp;
+            chg(arr, query[0], query[1]);
         }
         
         return arr;
