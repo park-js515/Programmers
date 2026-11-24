@@ -1,22 +1,20 @@
-import java.util.HashMap;
-import java.util.Map;
-
+import java.util.*;
 
 class Solution {
     public String solution(int[] numLog) {
-        Map<Integer, Character> map = Map.of(
-            1, 'w',
-            -1, 's',
-            10, 'd',
-            -10, 'a'
-        );
+        Map<Integer, Character> map = new HashMap<>() {{
+            put(1, 'w');
+            put(-1, 's');
+            put(10, 'd');
+            put(-10, 'a');
+        }};
         
-        char[] res = new char[numLog.length - 1];
-        for (int i = 0; i < numLog.length - 1; i++) {
-            int gap = numLog[i + 1] - numLog[i];
-            res[i] = map.get(gap);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i < numLog.length; i++) {
+            int diff = numLog[i] - numLog[i - 1];
+            sb.append(map.get(diff));
         }
         
-        return new String(res);
+        return sb.toString();
     }
 }
