@@ -1,12 +1,11 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 class Solution {
     public int[] solution(int n) {
         List<Integer> list = new ArrayList<>();
         list.add(n);
         
-        while (n > 1) {
+        while (n != 1) {
             if (n % 2 == 0) {
                 n /= 2;
                 list.add(n);
