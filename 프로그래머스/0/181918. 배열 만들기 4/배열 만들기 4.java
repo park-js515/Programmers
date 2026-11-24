@@ -2,23 +2,22 @@ import java.util.*;
 
 class Solution {
     public int[] solution(int[] arr) {
-        int len = arr.length;
-        ArrayDeque<Integer> stk = new ArrayDeque<>();
+        int i = 0;
+        ArrayDeque<Integer> deque = new ArrayDeque<>();
         
-        int index = 0;
-        while (index < len) {
-            if (stk.isEmpty()) {
-                stk.add(arr[index++]);
+        while (i < arr.length) {
+            if (deque.isEmpty()) {
+                deque.add(arr[i++]);
                 continue;
             }
             
-            if (stk.peekLast() < arr[index]) {
-                stk.add(arr[index++]);
+            if (deque.peekLast() < arr[i]) {
+                deque.add(arr[i++]);
             } else {
-                stk.pollLast();
+                deque.pollLast();
             }
         }
-        
-        return stk.stream().mapToInt(Integer::intValue).toArray();
+
+        return deque.stream().mapToInt(Integer::intValue).toArray();
     }
 }
