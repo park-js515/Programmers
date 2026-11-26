@@ -1,13 +1,16 @@
 class Solution {
     public int[] solution(String my_string) {
-        int[] result = new int[52];
+        int[] answer = new int[52];
         
-        for (int i = 0; i < my_string.length(); i++) {
+        for (int i = 0; i< my_string.length(); i++) {
             char ch = my_string.charAt(i);
-            int index = Character.isUpperCase(ch) ? ch - 'A' : ch - 'a' + 26;
-            result[index]++;
+            if (ch >= 'A' && ch <= 'Z') {
+                answer[ch - 'A']++;
+            } else {
+                answer[ch - 'a' + 26]++;
+            }
         }
         
-        return result;
+        return answer;
     }
 }
