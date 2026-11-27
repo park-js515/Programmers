@@ -1,11 +1,11 @@
 class Solution {
     public int[] solution(int n, int k) {
-        int q = n / k;
-        int[] answer = new int[q];
-        int index = 0;
+        int c = n / k;
+        int idx = 0;
+        int[] answer = new int[c];
         
         for (int i = k; i <= n; i += k) {
-            answer[index++] = i;
+            answer[idx++] = i;
         }
         
         return answer;
