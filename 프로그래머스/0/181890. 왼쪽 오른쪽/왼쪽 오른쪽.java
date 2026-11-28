@@ -1,18 +1,24 @@
-import java.util.*;
-
 class Solution {
     public String[] solution(String[] str_list) {
-        String[] answer = {};
         int len = str_list.length;
+        String[] answer = {};
         
         for (int i = 0; i < len; i++) {
-            String str = str_list[i];
-            
-            if (str.equals("l")) {
-                answer = Arrays.copyOfRange(str_list, 0, i);
+            if (str_list[i].equals("l")) {
+                int size = i;
+                answer = new String[size];
+                for (int j = 0; j < size; j++) {
+                    answer[j] = str_list[j];
+                }
                 break;
-            } else if (str.equals("r")) {
-                answer = Arrays.copyOfRange(str_list, i + 1, len);
+            }
+            if (str_list[i].equals("r")) {
+                int size = len - i - 1;
+                int idx = i + 1;
+                answer = new String[size];
+                for (int j = 0; j < size; j++) {
+                    answer[j] = str_list[idx++];
+                }
                 break;
             }
         }
