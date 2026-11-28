@@ -1,15 +1,14 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 class Solution {
     public int[] solution(int[] arr, int[][] intervals) {
-        List<Integer> answer = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
         for (int[] interval : intervals) {
             for (int i = interval[0]; i <= interval[1]; i++) {
-                answer.add(arr[i]);
+                list.add(arr[i]);
             }
         }
         
-        return answer.stream().mapToInt(Integer::intValue).toArray();
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
 }
