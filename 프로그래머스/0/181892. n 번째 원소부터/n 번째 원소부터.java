@@ -1,10 +1,12 @@
-import java.util.stream.IntStream;
-
 class Solution {
     public int[] solution(int[] num_list, int n) {
-        return IntStream
-            .range(n - 1, num_list.length)
-            .map(i -> num_list[i])
-            .toArray();
+        n--;
+        int s = num_list.length - n;
+        int[] answer = new int[s];
+        for (int i = 0; i < s; i++) {
+            answer[i] = num_list[n++];
+        }
+        
+        return answer;
     }
 }
